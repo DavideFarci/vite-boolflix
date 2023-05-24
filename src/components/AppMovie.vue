@@ -13,10 +13,8 @@ export default {
       TITOLO ORIGINALE: {{ movieData.original_title }}
     </div>
     <div class="language">LINGUA: {{ movieData.original_language }}</div>
-    <div class="vote">VOTO: {{ movieData.vote_averange }}</div>
+    <div class="vote">VOTO: {{ movieData.vote_average }}</div>
   </div>
-
-  <div class="series"></div>
 </template>
 
 <style lang="scss" scoped>

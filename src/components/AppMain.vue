@@ -1,10 +1,11 @@
 <script>
 import { store } from "../store";
-import AppCard from "../assets/img/AppCard.vue";
+import AppMovie from "../components/AppMovie.vue";
 import { objectToString } from "@vue/shared";
+import AppSerie from "./AppSerie.vue";
 
 export default {
-  components: { AppCard },
+  components: { AppMovie, AppSerie },
   data() {
     return {
       store,
@@ -15,17 +16,25 @@ export default {
 
 <template>
   <div class="movies">
-    <AppCard
+    <AppMovie
       v-for="movie in store.listMovies"
       :key="movie.id"
       :movieData="movie"
     />
   </div>
-  <div class="series"></div>
+
+  <div class="series">
+    <AppSerie
+      v-for="serie in store.listSeries"
+      :key="serie.id"
+      :seriesData="serie"
+    />
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.movies {
+.movies,
+.series {
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem;

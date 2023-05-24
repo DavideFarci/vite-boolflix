@@ -20,6 +20,15 @@ export default {
           },
         })
         .then((response) => (this.store.listMovies = response.data.results));
+
+      axios
+        .get("https://api.themoviedb.org/3/search/tv", {
+          params: {
+            api_key: "251bc3d26f592e293c210d99c057199e",
+            query: this.store.searchInput,
+          },
+        })
+        .then((response) => (this.store.listSeries = response.data.results));
     },
   },
 };
