@@ -11,6 +11,11 @@ export default {
       store,
     };
   },
+  methods: {
+    getUrlImage(img) {
+      return new URL(`//image.tmdb.org/t/p/w342${img}`, import.meta.url).href;
+    },
+  },
 };
 </script>
 

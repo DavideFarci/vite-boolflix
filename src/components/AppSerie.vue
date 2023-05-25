@@ -8,6 +8,14 @@ export default {
 
 <template>
   <div class="serie">
+    <div class="img-container">
+      <img
+        v-if="seriesData.poster_path"
+        :src="`https://image.tmdb.org/t/p/w342${seriesData.poster_path}`"
+        :alt="seriesData.poster_path"
+      />
+      <img v-else src="../assets/img/fallback-image.png" alt="Fallback Image" />
+    </div>
     <div class="title">TITOLO: {{ seriesData.name }}</div>
     <div class="original-title">
       TITOLO ORIGINALE: {{ seriesData.original_name }}
