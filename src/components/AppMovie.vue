@@ -3,6 +3,12 @@ export default {
   props: {
     movieData: Object,
   },
+  computed: {
+    convertedVote() {
+      // Calcola il voto da 1 a 5
+      return Math.ceil((this.movieData.vote_average / 10) * 5);
+    },
+  },
 };
 </script>
 
@@ -21,7 +27,18 @@ export default {
       TITOLO ORIGINALE: {{ movieData.original_title }}
     </div>
     <div class="language">LINGUA: {{ movieData.original_language }}</div>
-    <div class="vote">VOTO: {{ movieData.vote_average }}</div>
+    <!-- <div class="vote" v-for="star in movieData.vote_average">
+      VOTO: {{ convertVote(movieData.vote_average) }}
+    </div> -->
+    <i
+      class="fa-regular fa-star"
+      v-for="star in 5"
+      :key="star"
+      :class="{
+        'fa-solid': star <= convertedVote,
+        'fa-star': star > convertedVote,
+      }"
+    ></i>
   </div>
 </template>
 
@@ -29,5 +46,9 @@ export default {
 .movie {
   border: 1px solid black;
   padding: 0.5rem;
+}
+
+i {
+  color: orange;
 }
 </style>

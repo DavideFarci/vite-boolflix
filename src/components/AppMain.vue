@@ -15,6 +15,12 @@ export default {
     getUrlImage(img) {
       return new URL(`//image.tmdb.org/t/p/w342${img}`, import.meta.url).href;
     },
+    convertVote(vote) {
+      // Calcola il voto da 1 a 5
+      const convertedVote = Math.ceil((vote / 10) * 5);
+
+      return convertedVote;
+    },
   },
 };
 </script>

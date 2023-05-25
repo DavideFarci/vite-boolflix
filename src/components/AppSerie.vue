@@ -3,6 +3,12 @@ export default {
   props: {
     seriesData: Object,
   },
+  computed: {
+    convertedVote() {
+      // Calcola il voto da 1 a 5
+      return Math.ceil((this.seriesData.vote_average / 10) * 5);
+    },
+  },
 };
 </script>
 
@@ -21,7 +27,16 @@ export default {
       TITOLO ORIGINALE: {{ seriesData.original_name }}
     </div>
     <div class="language">LINGUA: {{ seriesData.original_language }}</div>
-    <div class="vote">VOTO: {{ seriesData.vote_average }}</div>
+    <!-- <div class="vote">VOTO: {{ convertVote(seriesData.vote_average) }}</div> -->
+    <i
+      class="fa-regular fa-star"
+      v-for="star in 5"
+      :key="star"
+      :class="{
+        'fa-solid': star <= convertedVote,
+        'fa-star': star > convertedVote,
+      }"
+    ></i>
   </div>
 </template>
 
@@ -30,5 +45,9 @@ export default {
   background-color: brown;
   border: 1px solid black;
   padding: 0.5rem;
+}
+
+i {
+  color: orange;
 }
 </style>
