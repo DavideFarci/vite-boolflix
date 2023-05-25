@@ -1,4 +1,5 @@
 <script>
+import LangFlag from "vue-lang-code-flags";
 export default {
   props: {
     seriesData: Object,
@@ -23,10 +24,16 @@ export default {
       <img v-else src="../assets/img/fallback-image.png" alt="Fallback Image" />
     </div>
     <div class="title">TITOLO: {{ seriesData.name }}</div>
-    <div class="original-title">
+    <div
+      class="original-title"
+      v-show="seriesData.title !== seriesData.original_title"
+    >
       TITOLO ORIGINALE: {{ seriesData.original_name }}
     </div>
-    <div class="language">LINGUA: {{ seriesData.original_language }}</div>
+    <div class="language">
+      LINGUA: <lang-flag :iso="seriesData.original_language" />
+    </div>
+
     <i
       class="fa-regular fa-star"
       v-for="star in 5"

@@ -1,4 +1,5 @@
 <script>
+import LangFlag from "vue-lang-code-flags";
 export default {
   props: {
     movieData: Object,
@@ -23,10 +24,15 @@ export default {
       <img v-else src="../assets/img/fallback-image.png" alt="Fallback Image" />
     </div>
     <div class="title">TITOLO: {{ movieData.title }}</div>
-    <div class="original-title">
+    <div
+      class="original-title"
+      v-show="movieData.title !== movieData.original_title"
+    >
       TITOLO ORIGINALE: {{ movieData.original_title }}
     </div>
-    <div class="language">LINGUA: {{ movieData.original_language }}</div>
+    <div class="language">
+      LINGUA: <lang-flag :iso="movieData.original_language" />
+    </div>
     <!-- <div class="vote" v-for="star in movieData.vote_average">
       VOTO: {{ convertVote(movieData.vote_average) }}
     </div> -->

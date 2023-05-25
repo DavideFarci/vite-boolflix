@@ -40,8 +40,11 @@ export default {
 <style lang="scss" scoped>
 .movies,
 .series {
+  max-width: 1200px;
+  margin: auto;
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   gap: 1.2rem;
+  overflow-x: scroll;
 }
 </style>
