@@ -27,7 +27,6 @@ export default {
       TITOLO ORIGINALE: {{ seriesData.original_name }}
     </div>
     <div class="language">LINGUA: {{ seriesData.original_language }}</div>
-    <!-- <div class="vote">VOTO: {{ convertVote(seriesData.vote_average) }}</div> -->
     <i
       class="fa-regular fa-star"
       v-for="star in 5"
