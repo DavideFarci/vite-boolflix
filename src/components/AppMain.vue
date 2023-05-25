@@ -20,31 +20,41 @@ export default {
 </script>
 
 <template>
-  <div class="movies">
-    <AppMovie
-      v-for="movie in store.listMovies"
-      :key="movie.id"
-      :movieData="movie"
-    />
-  </div>
+  <div class="container">
+    <h2>FILM</h2>
+    <div class="movies">
+      <AppMovie
+        v-for="movie in store.listMovies"
+        :key="movie.id"
+        :movieData="movie"
+      />
+    </div>
 
-  <div class="series">
-    <AppSerie
-      v-for="serie in store.listSeries"
-      :key="serie.id"
-      :seriesData="serie"
-    />
+    <h2>SERIE TV</h2>
+    <div class="series">
+      <AppSerie
+        v-for="serie in store.listSeries"
+        :key="serie.id"
+        :seriesData="serie"
+      />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.movies,
-.series {
-  max-width: 1200px;
+.container {
+  max-width: 1600px;
   margin: auto;
-  display: flex;
-  // flex-wrap: wrap;
-  gap: 1.2rem;
-  overflow-x: scroll;
+  padding: 1rem;
+
+  .movies,
+  .series {
+    display: flex;
+    // flex-wrap: wrap;
+    gap: 1rem;
+    overflow-x: scroll;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
 }
 </style>

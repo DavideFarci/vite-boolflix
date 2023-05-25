@@ -23,37 +23,62 @@ export default {
       />
       <img v-else src="../assets/img/fallback-image.png" alt="Fallback Image" />
     </div>
-    <div class="title">TITOLO: {{ seriesData.name }}</div>
-    <div
-      class="original-title"
-      v-show="seriesData.title !== seriesData.original_title"
-    >
-      TITOLO ORIGINALE: {{ seriesData.original_name }}
-    </div>
-    <div class="language">
-      LINGUA: <lang-flag :iso="seriesData.original_language" />
-    </div>
+    <div class="card-info">
+      <div class="title">TITOLO: {{ seriesData.name }}</div>
+      <div
+        class="original-title"
+        v-show="seriesData.title !== seriesData.original_title"
+      >
+        TITOLO ORIGINALE: {{ seriesData.original_name }}
+      </div>
+      <div class="language">
+        LINGUA: <lang-flag :iso="seriesData.original_language" />
+      </div>
 
-    <i
-      class="fa-regular fa-star"
-      v-for="star in 5"
-      :key="star"
-      :class="{
-        'fa-solid': star <= convertedVote,
-        'fa-star': star > convertedVote,
-      }"
-    ></i>
+      <i
+        class="fa-regular fa-star"
+        v-for="star in 5"
+        :key="star"
+        :class="{
+          'fa-solid': star <= convertedVote,
+          'fa-star': star > convertedVote,
+        }"
+      ></i>
+      <div class="overview">TRAMA: {{ seriesData.overview }}</div>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .serie {
-  background-color: brown;
-  border: 1px solid black;
-  padding: 0.5rem;
+  position: relative;
+  cursor: pointer;
+  &:hover img {
+    opacity: 0.5;
+    filter: grayscale(0.8);
+  }
+  &:hover .card-info {
+    display: block;
+  }
 }
 
 i {
   color: orange;
+}
+
+.card-info {
+  width: 100%;
+  height: 100%;
+  display: none;
+  font-size: 1.1em;
+  text-align: center;
+  line-height: 30px;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  overflow-y: auto;
 }
 </style>
