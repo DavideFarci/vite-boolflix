@@ -3,6 +3,7 @@ import { store } from "../store";
 import AppMovie from "../components/AppMovie.vue";
 import { objectToString } from "@vue/shared";
 import AppSerie from "./AppSerie.vue";
+import axios from "axios";
 
 export default {
   components: { AppMovie, AppSerie },
@@ -11,16 +12,21 @@ export default {
       store,
     };
   },
-  methods: {
-    getUrlImage(img) {
-      return new URL(`//image.tmdb.org/t/p/w342${img}`, import.meta.url).href;
-    },
+  updated() {
+    for (let i = 0; i < store.listMovies.length; i++) {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${store.listMovies[i].id}/credits`
+        )
+        .then((response) => (this.store.listMovieId = response.data.cast));
+    }
+    console.log(store.listMovieId);
   },
 };
 </script>
 
 <template>
-  <div class="container">
+  <main>
     <h2>FILM</h2>
     <div class="movies">
       <AppMovie
@@ -38,14 +44,19 @@ export default {
         :seriesData="serie"
       />
     </div>
-  </div>
+  </main>
 </template>
 
 <style lang="scss" scoped>
-.container {
-  max-width: 1600px;
+main {
+  // max-width: 1600px;
+  background-color: black;
   margin: auto;
   padding: 1rem;
+  h2 {
+    margin-left: 33px;
+    color: white;
+  }
 
   .movies,
   .series {
@@ -55,6 +66,13 @@ export default {
     overflow-x: scroll;
     padding: 2rem;
     margin-bottom: 2rem;
+    &::-webkit-scrollbar {
+      background: black;
+      height: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgb(112, 1, 1);
+    }
   }
 }
 </style>

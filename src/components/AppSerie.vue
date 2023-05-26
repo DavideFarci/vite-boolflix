@@ -10,6 +10,9 @@ export default {
       return Math.ceil((this.seriesData.vote_average / 10) * 5);
     },
   },
+  components: {
+    LangFlag,
+  },
 };
 </script>
 
@@ -51,14 +54,17 @@ export default {
 
 <style lang="scss" scoped>
 .serie {
+  border: 1px solid rgba(255, 0, 0, 0.5);
   position: relative;
   cursor: pointer;
   &:hover img {
-    opacity: 0.5;
+    opacity: 0.6;
     filter: grayscale(0.8);
+    transition: 1s;
   }
   &:hover .card-info {
     display: block;
+    transition: 2s;
   }
 }
 
@@ -80,5 +86,17 @@ i {
   transform: translate(-50%, -50%);
   padding: 1rem;
   overflow-y: auto;
+  .title,
+  .original-title,
+  .language,
+  .overview {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+  }
+}
+.card-info::-webkit-scrollbar {
+  background: white;
+  width: 5px;
+  height: 8px;
 }
 </style>

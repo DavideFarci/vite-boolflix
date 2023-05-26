@@ -30,6 +30,16 @@ export default {
         })
         .then((response) => (this.store.listSeries = response.data.results));
     },
+    // getId() {
+    //   for (let i = 0; i < store.listMovies.length; i++) {
+    //     axios
+    //       .get(
+    //         `https://api.themoviedb.org/3/movie/${store.listMovies[i].id}/credits`
+    //       )
+    //       .then((response) => (this.store.listMovieId = response.data.cast));
+    //   }
+    //   console.log(store.listMovieId);
+    // },
   },
   created() {
     axios
@@ -46,6 +56,7 @@ export default {
         },
       })
       .then((response) => (this.store.listSeries = response.data.results));
+    // this.getId();
   },
 };
 </script>
