@@ -70,10 +70,10 @@ export default {
       <div class="overview">TRAMA: {{ movieData.overview }}</div>
       <button @click="this.getMovieCast(movieData.id)">CAST</button>
 
-      <ul class="cast">
+      <ul style="list-style: none" class="cast">
         <li v-for="cast in listMovieCast">
           {{ cast.name }} IN
-          {{ cast.character }}
+          <span style="color: rgba(255, 0, 0, 0.5)">{{ cast.character }}</span>
         </li>
       </ul>
     </div>
