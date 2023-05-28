@@ -3,6 +3,7 @@ import LangFlag from "vue-lang-code-flags";
 export default {
   props: {
     movieData: Object,
+    movieCast: Array,
   },
   computed: {
     convertedVote() {
@@ -47,6 +48,13 @@ export default {
         }"
       ></i>
       <div class="overview">TRAMA: {{ movieData.overview }}</div>
+      <!-- <ul class="cast">
+        <li>{{ movieCast }}</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul> -->
     </div>
   </div>
 </template>

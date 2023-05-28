@@ -12,16 +12,6 @@ export default {
       store,
     };
   },
-  updated() {
-    for (let i = 0; i < store.listMovies.length; i++) {
-      axios
-        .get(
-          `https://api.themoviedb.org/3/movie/${store.listMovies[i].id}/credits`
-        )
-        .then((response) => (this.store.listMovieId = response.data.cast));
-    }
-    console.log(store.listMovieId);
-  },
 };
 </script>
 
@@ -30,9 +20,10 @@ export default {
     <h2>FILM</h2>
     <div class="movies">
       <AppMovie
-        v-for="movie in store.listMovies"
+        v-for="(movie, i) in store.listMovies"
         :key="movie.id"
         :movieData="movie"
+        :movieCast="store.listMovieCast[i]"
       />
     </div>
 
