@@ -32,7 +32,6 @@ export default {
 
           this.listSeriesCast = tempSerie;
         });
-      console.log(this.listSeriesCast);
     },
   },
 };

@@ -9,7 +9,6 @@ export default {
   },
   props: {
     movieData: Object,
-    movieCast: Array,
   },
   computed: {
     convertedVote() {
@@ -33,7 +32,6 @@ export default {
 
           this.listMovieCast = tempMovies;
         });
-      console.log(this.listMovieCast);
     },
   },
 };
@@ -74,7 +72,7 @@ export default {
 
       <ul class="cast">
         <li v-for="cast in listMovieCast">
-          {{ cast.name }} in
+          {{ cast.name }} IN
           {{ cast.character }}
         </li>
       </ul>
