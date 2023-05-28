@@ -1,6 +1,12 @@
 <script>
 import LangFlag from "vue-lang-code-flags";
+import axios from "axios";
 export default {
+  data() {
+    return {
+      listMovieCast: [],
+    };
+  },
   props: {
     movieData: Object,
     movieCast: Array,
@@ -13,6 +19,22 @@ export default {
   },
   components: {
     LangFlag,
+  },
+  methods: {
+    getMovieCast(idMovie) {
+      axios
+        .get(`https://api.themoviedb.org/3/movie/${idMovie}/credits`, {
+          params: {
+            api_key: "251bc3d26f592e293c210d99c057199e",
+          },
+        })
+        .then((response) => {
+          const tempMovies = response.data.cast.slice(0, 5);
+
+          this.listMovieCast = tempMovies;
+        });
+      console.log(this.listMovieCast);
+    },
   },
 };
 </script>
@@ -48,13 +70,14 @@ export default {
         }"
       ></i>
       <div class="overview">TRAMA: {{ movieData.overview }}</div>
-      <!-- <ul class="cast">
-        <li>{{ movieCast }}</li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul> -->
+      <button @click="this.getMovieCast(movieData.id)">CAST</button>
+
+      <ul class="cast">
+        <li v-for="cast in listMovieCast">
+          {{ cast.name }} in
+          {{ cast.character }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -96,7 +119,8 @@ i {
   .title,
   .original-title,
   .language,
-  .overview {
+  .overview,
+  .cast {
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
   }

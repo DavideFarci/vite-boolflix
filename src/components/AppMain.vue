@@ -23,7 +23,6 @@ export default {
         v-for="(movie, i) in store.listMovies"
         :key="movie.id"
         :movieData="movie"
-        :movieCast="store.listMovieCast[i]"
       />
     </div>
 
