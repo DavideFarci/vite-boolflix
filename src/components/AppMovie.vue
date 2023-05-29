@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <div class="movie .standard">
+  <div class="movie standard">
     <div class="img-container">
       <img
         v-if="movieData.poster_path"

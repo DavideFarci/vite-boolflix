@@ -24,7 +24,18 @@ export default {
           this.store.moviesGenres = response.data.genres;
         });
     },
-    showSelectedGenre() {
+    getGenresSeries() {
+      axios
+        .get("https://api.themoviedb.org/3/genre/tv/list", {
+          params: {
+            api_key: "251bc3d26f592e293c210d99c057199e",
+          },
+        })
+        .then((response) => {
+          this.store.seriesGenres = response.data.genres;
+        });
+    },
+    showSelectedMoviesGenre() {
       const movies = document.querySelectorAll(".movie");
 
       for (let i = 0; i < store.listMovies.length; i++) {
@@ -45,10 +56,31 @@ export default {
         }
       }
     },
+    showSelectedSeriesGenre() {
+      const series = document.querySelectorAll(".serie");
+
+      for (let i = 0; i < store.listSeries.length; i++) {
+        const serie = series[i];
+
+        if (store.selectedGenre == "") {
+          serie.classList.remove("unselectedByGenre");
+          serie.classList.remove("selectedByGenre");
+          serie.classList.add("standard");
+        } else if (
+          store.listSeries[i].genre_ids.includes(store.selectedGenre)
+        ) {
+          serie.classList.add("selectedByGenre");
+          serie.classList.remove("unselectedByGenre");
+        } else {
+          serie.classList.remove("selectedByGenre");
+          serie.classList.add("unselectedByGenre");
+        }
+      }
+    },
   },
   created() {
     this.getGenresMovies();
-    console.log(store.moviesGenres);
+    this.getGenresSeries();
   },
 };
 </script>
@@ -56,7 +88,10 @@ export default {
 <template>
   <main>
     <h2>FILM</h2>
-    <select v-model="store.selectedGenre" @change="this.showSelectedGenre()">
+    <select
+      v-model="store.selectedGenre"
+      @change="this.showSelectedMoviesGenre()"
+    >
       <option value="">Seleziona un genere</option>
       <option
         v-for="genre in store.moviesGenres"
@@ -75,6 +110,19 @@ export default {
     </div>
 
     <h2>SERIE TV</h2>
+    <select
+      v-model="store.selectedGenre"
+      @change="this.showSelectedSeriesGenre()"
+    >
+      <option value="">Seleziona un genere</option>
+      <option
+        v-for="genre in store.seriesGenres"
+        :key="genre.id"
+        :value="genre.id"
+      >
+        {{ genre.name }}
+      </option>
+    </select>
     <div class="series">
       <AppSerie
         v-for="serie in store.listSeries"

@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <div class="serie">
+  <div class="serie standard">
     <div class="img-container">
       <img
         v-if="seriesData.poster_path"
@@ -128,5 +128,9 @@ i {
   background: white;
   width: 5px;
   height: 8px;
+}
+
+.serie.unselectedByGenre {
+  display: none;
 }
 </style>
