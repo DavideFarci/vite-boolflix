@@ -192,5 +192,14 @@ main {
       display: block;
     }
   }
+  select {
+    margin-left: 29px;
+    margin-top: 5px;
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 0;
+  }
 }
 </style>
