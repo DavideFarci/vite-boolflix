@@ -123,6 +123,16 @@ i {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
   }
+  button {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    padding: 0.3rem;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: red;
+    }
+  }
 }
 .card-info::-webkit-scrollbar {
   background: white;
