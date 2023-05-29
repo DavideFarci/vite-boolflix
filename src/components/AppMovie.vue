@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <div class="movie">
+  <div class="movie .standard">
     <div class="img-container">
       <img
         v-if="movieData.poster_path"
@@ -81,7 +81,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.movie {
+.movie.standard {
   border: 1px solid rgba(255, 0, 0, 0.5);
   position: relative;
   cursor: pointer;
@@ -119,7 +119,7 @@ i {
   .language,
   .overview,
   .cast {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
   }
 }
@@ -128,5 +128,9 @@ i {
   background: white;
   width: 5px;
   height: 8px;
+}
+
+.movie.unselectedByGenre {
+  display: none;
 }
 </style>

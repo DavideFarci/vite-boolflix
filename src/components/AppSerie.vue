@@ -120,7 +120,7 @@ i {
   .language,
   .overview,
   .cast {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
   }
 }

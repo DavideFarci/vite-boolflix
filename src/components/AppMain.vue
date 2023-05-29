@@ -12,12 +12,60 @@ export default {
       store,
     };
   },
+  methods: {
+    getGenresMovies() {
+      axios
+        .get("https://api.themoviedb.org/3/genre/movie/list", {
+          params: {
+            api_key: "251bc3d26f592e293c210d99c057199e",
+          },
+        })
+        .then((response) => {
+          this.store.moviesGenres = response.data.genres;
+        });
+    },
+    showSelectedGenre() {
+      const movies = document.querySelectorAll(".movie");
+
+      for (let i = 0; i < store.listMovies.length; i++) {
+        const movie = movies[i];
+
+        if (store.selectedGenre == "") {
+          movie.classList.remove("unselectedByGenre");
+          movie.classList.remove("selectedByGenre");
+          movie.classList.add("standard");
+        } else if (
+          store.listMovies[i].genre_ids.includes(store.selectedGenre)
+        ) {
+          movie.classList.add("selectedByGenre");
+          movie.classList.remove("unselectedByGenre");
+        } else {
+          movie.classList.remove("selectedByGenre");
+          movie.classList.add("unselectedByGenre");
+        }
+      }
+    },
+  },
+  created() {
+    this.getGenresMovies();
+    console.log(store.moviesGenres);
+  },
 };
 </script>
 
 <template>
   <main>
     <h2>FILM</h2>
+    <select v-model="store.selectedGenre" @change="this.showSelectedGenre()">
+      <option value="">Seleziona un genere</option>
+      <option
+        v-for="genre in store.moviesGenres"
+        :key="genre.id"
+        :value="genre.id"
+      >
+        {{ genre.name }}
+      </option>
+    </select>
     <div class="movies">
       <AppMovie
         v-for="(movie, i) in store.listMovies"
