@@ -35,60 +35,76 @@ export default {
           this.store.seriesGenres = response.data.genres;
         });
     },
-    showSelectedMoviesGenre() {
-      const movies = document.querySelectorAll(".movie");
-      const result = document.querySelector(".not-found");
+    // showSelectedMoviesGenre() {
+    //   const movies = document.querySelectorAll(".movie");
+    //   const result = document.querySelector(".not-found");
 
-      for (let i = 0; i < store.listMovies.length; i++) {
-        const movie = movies[i];
+    //   for (let i = 0; i < store.listMovies.length; i++) {
+    //     const movie = movies[i];
 
-        if (store.selectedGenre == "") {
-          result.classList.remove("visible");
-          movie.classList.remove("unselectedByGenre");
-          movie.classList.remove("selectedByGenre");
-          movie.classList.add("standard");
-        } else if (
-          store.listMovies[i].genre_ids.includes(store.selectedGenre)
-        ) {
-          result.classList.remove("visible");
-          movie.classList.add("selectedByGenre");
-          movie.classList.remove("unselectedByGenre");
-        } else {
-          result.classList.add("visible");
-          movie.classList.remove("selectedByGenre");
-          movie.classList.add("unselectedByGenre");
-        }
-      }
-    },
-    showSelectedSeriesGenre() {
-      const series = document.querySelectorAll(".serie");
-      const results = document.querySelector(".not-founds");
+    //     if (store.selectedGenre == "") {
+    //       result.classList.remove("visible");
+    //       movie.classList.remove("unselectedByGenre");
+    //       movie.classList.remove("selectedByGenre");
+    //       movie.classList.add("standard");
+    //     } else if (
+    //       store.listMovies[i].genre_ids.includes(store.selectedGenre)
+    //     ) {
+    //       result.classList.remove("visible");
+    //       movie.classList.add("selectedByGenre");
+    //       movie.classList.remove("unselectedByGenre");
+    //     } else {
+    //       result.classList.add("visible");
+    //       movie.classList.remove("selectedByGenre");
+    //       movie.classList.add("unselectedByGenre");
+    //     }
+    //   }
+    // },
+    // showSelectedSeriesGenre() {
+    //   const series = document.querySelectorAll(".serie");
+    //   const results = document.querySelector(".not-founds");
 
-      for (let i = 0; i < store.listSeries.length; i++) {
-        const serie = series[i];
+    //   for (let i = 0; i < store.listSeries.length; i++) {
+    //     const serie = series[i];
 
-        if (store.selectedGenre == "") {
-          results.classList.remove("visible");
-          serie.classList.remove("unselectedByGenre");
-          serie.classList.remove("selectedByGenre");
-          serie.classList.add("standard");
-        } else if (
-          store.listSeries[i].genre_ids.includes(store.selectedGenre)
-        ) {
-          results.classList.remove("visible");
-          serie.classList.add("selectedByGenre");
-          serie.classList.remove("unselectedByGenre");
-        } else {
-          results.classList.add("visible");
-          serie.classList.remove("selectedByGenre");
-          serie.classList.add("unselectedByGenre");
-        }
-      }
-    },
+    //     if (store.selectedGenre == "") {
+    //       results.classList.remove("visible");
+    //       serie.classList.remove("unselectedByGenre");
+    //       serie.classList.remove("selectedByGenre");
+    //       serie.classList.add("standard");
+    //     } else if (
+    //       store.listSeries[i].genre_ids.includes(store.selectedGenre)
+    //     ) {
+    //       results.classList.remove("visible");
+    //       serie.classList.add("selectedByGenre");
+    //       serie.classList.remove("unselectedByGenre");
+    //     } else {
+    //       results.classList.add("visible");
+    //       serie.classList.remove("selectedByGenre");
+    //       serie.classList.add("unselectedByGenre");
+    //     }
+    //   }
+    // },
   },
   created() {
     this.getGenresMovies();
     this.getGenresSeries();
+  },
+  computed: {
+    filterMovies() {
+      return store.selectedGenreMovies
+        ? store.listMovies.filter((movie) => {
+            return movie.genre_ids.includes(store.selectedGenreMovies);
+          })
+        : store.listMovies;
+    },
+    filterSeries() {
+      return store.selectedGenreSeries
+        ? store.listSeries.filter((serie) => {
+            return serie.genre_ids.includes(store.selectedGenreSeries);
+          })
+        : store.listSeries;
+    },
   },
 };
 </script>
@@ -96,10 +112,8 @@ export default {
 <template>
   <main>
     <h2>FILM</h2>
-    <select
-      v-model="store.selectedGenre"
-      @change="this.showSelectedMoviesGenre()"
-    >
+    <!-- @change="this.showSelectedMoviesGenre()" -->
+    <select v-model="store.selectedGenreMovies">
       <option value="">Seleziona un genere</option>
       <option
         v-for="genre in store.moviesGenres"
@@ -110,21 +124,19 @@ export default {
       </option>
     </select>
     <div class="movies">
-      <div class="not-found">
+      <div :class="{ visible: filterMovies.length === 0 }" class="not-found">
         Non ci sono risultati disponibili per la ricerca
       </div>
       <AppMovie
-        v-for="(movie, i) in store.listMovies"
+        v-for="(movie, i) in filterMovies"
         :key="movie.id"
         :movieData="movie"
       />
     </div>
 
     <h2>SERIE TV</h2>
-    <select
-      v-model="store.selectedGenre"
-      @change="this.showSelectedSeriesGenre()"
-    >
+    <!-- @change="this.showSelectedSeriesGenre()" -->
+    <select v-model="store.selectedGenreSeries">
       <option value="">Seleziona un genere</option>
       <option
         v-for="genre in store.seriesGenres"
@@ -135,11 +147,11 @@ export default {
       </option>
     </select>
     <div class="series">
-      <div class="not-founds">
+      <div :class="{ visible: filterSeries.length === 0 }" class="not-founds">
         Non ci sono risultati disponibili per la ricerca
       </div>
       <AppSerie
-        v-for="serie in store.listSeries"
+        v-for="serie in filterSeries"
         :key="serie.id"
         :seriesData="serie"
       />

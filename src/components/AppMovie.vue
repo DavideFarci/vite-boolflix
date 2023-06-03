@@ -1,6 +1,7 @@
 <script>
 import LangFlag from "vue-lang-code-flags";
 import axios from "axios";
+import { store } from "../store";
 export default {
   data() {
     return {
@@ -9,12 +10,6 @@ export default {
   },
   props: {
     movieData: Object,
-  },
-  computed: {
-    convertedVote() {
-      // Calcola il voto da 1 a 5
-      return Math.ceil((this.movieData.vote_average / 10) * 5);
-    },
   },
   components: {
     LangFlag,
@@ -32,6 +27,12 @@ export default {
 
           this.listMovieCast = tempMovies;
         });
+    },
+  },
+  computed: {
+    convertedVote() {
+      // Calcola il voto da 1 a 5
+      return Math.ceil((this.movieData.vote_average / 10) * 5);
     },
   },
 };

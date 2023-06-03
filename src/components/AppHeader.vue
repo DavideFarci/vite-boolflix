@@ -71,7 +71,6 @@ header {
     list-style: none;
     display: flex;
     justify-content: space-around;
-    // align-items: center;
     gap: 2rem;
     li {
       cursor: pointer;
