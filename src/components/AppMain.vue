@@ -161,6 +161,7 @@ export default {
 
 <style lang="scss" scoped>
 main {
+  position: relative;
   // max-width: 1600px;
   background-color: black;
   margin: auto;
@@ -212,6 +213,19 @@ main {
     padding: 0.5rem;
     border-radius: 10px;
     border: 0;
+  }
+  &::before {
+    content: "";
+    display: block;
+    height: 10rem;
+    width: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.945)
+    );
+    position: absolute;
+    top: -10rem;
   }
 }
 </style>

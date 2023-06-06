@@ -7,13 +7,27 @@ export default {
       store,
     };
   },
+  // methods: {
+  //   nextJumbo() {
+  //     store.activeIndex++;
+  //     if (store.activeIndex >= store.listJumbo.length) {
+  //       store.activeIndex = 0;
+  //     }
+  //   },
+  //   playJumbotron() {
+  //     setInterval(this.nextJumbo, 1000);
+  //   },
+  // },
+  // created() {
+  //   this.playJumbotron;
+  // },
 };
 </script>
 
 <template>
   <header>
     <div class="container">
-      <img src="../assets/img/logo.png" alt="" />
+      <img class="logo" src="../assets/img/logo.png" alt="" />
       <ul class="navbar">
         <li>Home</li>
         <li>Serie TV</li>
@@ -31,13 +45,21 @@ export default {
         <button @click="this.$emit('performedSearch')">Cerca</button>
       </div>
     </div>
-    <!-- <div class="jumbotron">
-      <img
-        v-for="jumbo in store.listMovies"
-        :src="`https://image.tmdb.org/t/p/w1280${jumbo.backdrop_path}`"
-        :alt="jumbo.title"
-      />
-    </div> -->
+    <div class="jumbotron">
+      <div
+        class="img-container"
+        v-for="(jumbo, i) in store.listJumbo"
+        :key="i"
+        :class="{ active: i == store.activeIndex }"
+      >
+        <img
+          :src="`https://image.tmdb.org/t/p/w1280${jumbo.backdrop_path}`"
+          :alt="jumbo.backdrop_path"
+        />
+        <div class="title">{{ jumbo.title }}</div>
+        <div class="upcoming"><span>Upcoming</span></div>
+      </div>
+    </div>
   </header>
 </template>
 
@@ -54,18 +76,48 @@ export default {
 header {
   background-color: black;
   color: white;
-  height: 5rem;
+  height: 45rem;
   padding: 1.2rem;
-  img {
+  .logo {
     height: 3rem;
-    // }
-    // .jumbotron {
-    //   height: 30rem;
-    //   img {
-    //     width: 100%;
-    //     height: 100%;
-    //     object-fit: cover;
-    //   }
+  }
+  .jumbotron {
+    height: 40rem;
+    cursor: pointer;
+    .img-container {
+      position: relative;
+      display: none;
+      height: 100%;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+      }
+      .title {
+        position: absolute;
+        bottom: 5rem;
+        right: 3rem;
+        font-size: 2.5em;
+        font-weight: bolder;
+        color: red;
+      }
+      .upcoming {
+        position: absolute;
+        top: 7rem;
+        left: 5rem;
+        background-color: red;
+        padding: 0.8rem 2.5rem;
+        transform: skew(-20deg);
+        span {
+          font-size: 2.5em;
+        }
+      }
+      &.active {
+        display: block;
+      }
+    }
   }
   .navbar {
     list-style: none;

@@ -3,6 +3,7 @@ import AppHeader from "./components/AppHeader.vue";
 import AppMain from "./components/AppMain.vue";
 import axios from "axios";
 import { store } from "./store";
+import { Transition } from "vue";
 export default {
   data() {
     return {
@@ -34,6 +35,12 @@ export default {
           this.store.listSeries = response.data.results;
         });
     },
+    nextJumbo() {
+      store.activeIndex++;
+      if (store.activeIndex >= store.listJumbo.length) {
+        store.activeIndex = 0;
+      }
+    },
   },
   created() {
     axios
@@ -50,6 +57,18 @@ export default {
         },
       })
       .then((response) => (this.store.listSeries = response.data.results));
+    axios
+      .get("https://api.themoviedb.org/3/movie/upcoming", {
+        params: {
+          api_key: "251bc3d26f592e293c210d99c057199e",
+        },
+      })
+      .then(
+        (response) => (this.store.listJumbo = response.data.results.slice(0, 5))
+      );
+  },
+  mounted() {
+    setInterval(this.nextJumbo, 4000);
   },
 };
 </script>

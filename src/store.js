@@ -1,5 +1,6 @@
 import { reactive } from "vue";
 export const store = reactive({
+  listJumbo: [],
   listMovies: [],
   listSeries: [],
   moviesGenres: [],
@@ -7,4 +8,5 @@ export const store = reactive({
   searchInput: "",
   selectedGenreMovies: "",
   selectedGenreSeries: "",
+  activeIndex: 0,
 });
