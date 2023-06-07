@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     convertedVote() {
-      // Calcola il voto da 1 a 5
+      // Converte il voto da una scala di 10 a una di 5
       return Math.ceil((this.movieData.vote_average / 10) * 5);
     },
   },

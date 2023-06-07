@@ -7,20 +7,6 @@ export default {
       store,
     };
   },
-  // methods: {
-  //   nextJumbo() {
-  //     store.activeIndex++;
-  //     if (store.activeIndex >= store.listJumbo.length) {
-  //       store.activeIndex = 0;
-  //     }
-  //   },
-  //   playJumbotron() {
-  //     setInterval(this.nextJumbo, 1000);
-  //   },
-  // },
-  // created() {
-  //   this.playJumbotron;
-  // },
 };
 </script>
 
