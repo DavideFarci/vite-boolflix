@@ -13,6 +13,7 @@ export default {
   components: { AppHeader, AppMain },
   methods: {
     requestMovies() {
+      // Chiamata film e serie tv per il tasto di ricerca
       axios
         .get("https://api.themoviedb.org/3/search/movie", {
           params: {
@@ -43,6 +44,7 @@ export default {
     },
   },
   created() {
+    //Chiamata film top rated home page
     axios
       .get("https://api.themoviedb.org/3/movie/top_rated", {
         params: {
@@ -50,6 +52,7 @@ export default {
         },
       })
       .then((response) => (this.store.listMovies = response.data.results));
+    //Chiamata serie tv top rated home page
     axios
       .get("https://api.themoviedb.org/3/tv/top_rated", {
         params: {
@@ -57,6 +60,7 @@ export default {
         },
       })
       .then((response) => (this.store.listSeries = response.data.results));
+    //Chiamata per film in uscita jumbotron
     axios
       .get("https://api.themoviedb.org/3/movie/upcoming", {
         params: {
@@ -68,6 +72,7 @@ export default {
       );
   },
   mounted() {
+    //partenza carosello jumbotron
     setInterval(this.nextJumbo, 4000);
   },
 };
