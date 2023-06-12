@@ -12,7 +12,7 @@ export default {
 
 <template>
   <header>
-    <div class="container">
+    <div class="container_fluid">
       <img class="logo" src="../assets/img/logo.png" alt="" />
       <ul class="navbar">
         <li>Home</li>
@@ -50,7 +50,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.container {
+.container_fluid {
   display: flex;
   justify-content: space-between;
   align-items: center;
