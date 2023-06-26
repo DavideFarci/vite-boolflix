@@ -13,7 +13,9 @@ export default {
 <template>
   <header>
     <div class="container_fluid">
-      <img class="logo" src="../assets/img/logo.png" alt="" />
+      <a href="http://localhost:5174/"
+        ><img class="logo" src="../assets/img/logo.png" alt="logo.png"
+      /></a>
       <ul class="navbar">
         <li>Home</li>
         <li>Serie TV</li>
