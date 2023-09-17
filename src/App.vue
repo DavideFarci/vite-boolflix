@@ -19,10 +19,7 @@ export default {
           .get("https://api.themoviedb.org/3/search/movie", {
             params: {
               api_key: "251bc3d26f592e293c210d99c057199e",
-              // query:
-              //   this.store.searchInput !== ""
-              //     ? this.store.searchInput
-              //     : undefined,
+              query: this.store.searchInput,
             },
           })
           .then((response) => {
@@ -33,10 +30,7 @@ export default {
           .get("https://api.themoviedb.org/3/search/tv", {
             params: {
               api_key: "251bc3d26f592e293c210d99c057199e",
-              // query:
-              //   this.store.searchInput !== ""
-              //     ? this.store.searchInput
-              //     : undefined,
+              query: this.store.searchInput,
             },
           })
           .then((response) => {
