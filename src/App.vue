@@ -14,27 +14,35 @@ export default {
   methods: {
     requestMovies() {
       // Chiamata film e serie tv per il tasto di ricerca
-      axios
-        .get("https://api.themoviedb.org/3/search/movie", {
-          params: {
-            api_key: "251bc3d26f592e293c210d99c057199e",
-            query: this.store.searchInput,
-          },
-        })
-        .then((response) => {
-          this.store.listMovies = response.data.results;
-        });
+      if (this.store.searchInput) {
+        axios
+          .get("https://api.themoviedb.org/3/search/movie", {
+            params: {
+              api_key: "251bc3d26f592e293c210d99c057199e",
+              // query:
+              //   this.store.searchInput !== ""
+              //     ? this.store.searchInput
+              //     : undefined,
+            },
+          })
+          .then((response) => {
+            this.store.listMovies = response.data.results;
+          });
 
-      axios
-        .get("https://api.themoviedb.org/3/search/tv", {
-          params: {
-            api_key: "251bc3d26f592e293c210d99c057199e",
-            query: this.store.searchInput,
-          },
-        })
-        .then((response) => {
-          this.store.listSeries = response.data.results;
-        });
+        axios
+          .get("https://api.themoviedb.org/3/search/tv", {
+            params: {
+              api_key: "251bc3d26f592e293c210d99c057199e",
+              // query:
+              //   this.store.searchInput !== ""
+              //     ? this.store.searchInput
+              //     : undefined,
+            },
+          })
+          .then((response) => {
+            this.store.listSeries = response.data.results;
+          });
+      }
     },
     nextJumbo() {
       store.activeIndex++;
