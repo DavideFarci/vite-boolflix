@@ -168,7 +168,7 @@ main {
     content: "";
     display: block;
     height: 10rem;
-    width: 100%;
+    width: 98%;
     background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0),

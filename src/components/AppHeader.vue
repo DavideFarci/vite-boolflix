@@ -13,7 +13,7 @@ export default {
 <template>
   <header>
     <div class="container_fluid">
-      <a href="http://localhost:5174/"
+      <a href="http://localhost:5173/"
         ><img class="logo" src="../assets/img/logo.png" alt="logo.png"
       /></a>
       <ul class="navbar">
@@ -73,23 +73,27 @@ header {
     height: 40rem;
     cursor: pointer;
     .img-container {
-      position: relative;
-      display: none;
-      height: 100%;
+      position: absolute;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
+      // display: none;
+      width: 98%;
+      // height: 100%;
       img {
-        height: 100%;
+        // height: 100%;
         width: 100%;
         object-fit: cover;
-        position: absolute;
-        top: 0;
+        // position: absolute;
+        // top: 0;
       }
       .title {
         position: absolute;
-        bottom: 5rem;
+        bottom: 25rem;
         right: 3rem;
         font-size: 2.5em;
         font-weight: bolder;
         color: red;
+        z-index: 10;
       }
       .upcoming {
         position: absolute;
@@ -103,7 +107,8 @@ header {
         }
       }
       &.active {
-        display: block;
+        // display: block;
+        opacity: 1;
       }
     }
   }
