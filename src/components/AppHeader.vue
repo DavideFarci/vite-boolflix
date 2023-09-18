@@ -76,15 +76,10 @@ header {
       position: absolute;
       transition: opacity 0.5s ease-in-out;
       opacity: 0;
-      // display: none;
       width: 98%;
-      // height: 100%;
       img {
-        // height: 100%;
         width: 100%;
         object-fit: cover;
-        // position: absolute;
-        // top: 0;
       }
       .title {
         position: absolute;
@@ -107,7 +102,6 @@ header {
         }
       }
       &.active {
-        // display: block;
         opacity: 1;
       }
     }
