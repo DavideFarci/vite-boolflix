@@ -86,6 +86,10 @@ export default {
 </template>
 
 <style lang="scss">
+body {
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;

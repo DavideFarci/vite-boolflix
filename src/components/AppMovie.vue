@@ -49,15 +49,19 @@ export default {
       <img v-else src="../assets/img/fallback-image.png" alt="Fallback Image" />
     </div>
     <div class="card-info">
-      <div class="title">TITOLO: {{ movieData.title }}</div>
+      <div class="title">
+        <span class="row_name">TITOLO:</span> {{ movieData.title }}
+      </div>
       <div
         class="original-title"
         v-show="movieData.title !== movieData.original_title"
       >
-        TITOLO ORIGINALE: {{ movieData.original_title }}
+        <span class="row_name">TITOLO ORIGINALE:</span>
+        {{ movieData.original_title }}
       </div>
       <div class="language">
-        LINGUA: <lang-flag :iso="movieData.original_language" />
+        <span class="row_name">LINGUA:</span>
+        <lang-flag :iso="movieData.original_language" />
       </div>
       <i
         class="fa-regular fa-star"
@@ -68,7 +72,9 @@ export default {
           'fa-star': star > convertedVote,
         }"
       ></i>
-      <div class="overview">TRAMA: {{ movieData.overview }}</div>
+      <div class="overview">
+        <span class="row_name">TRAMA:</span> {{ movieData.overview }}
+      </div>
       <button @click="this.getMovieCast(movieData.id)">CAST</button>
 
       <ul style="list-style: none" class="cast">
@@ -86,14 +92,10 @@ export default {
   border: 1px solid rgba(255, 0, 0, 0.5);
   position: relative;
   cursor: pointer;
-  &:hover img {
-    opacity: 0.6;
-    filter: grayscale(0.8);
-    transition: 1s;
-  }
   &:hover .card-info {
-    display: block;
-    transition: 2s;
+    height: 100%;
+    transition: 0.5s ease-in-out;
+    padding-inline: 0.5rem;
   }
 }
 
@@ -103,9 +105,8 @@ i {
 
 .card-info {
   width: 100%;
-  height: 100%;
-  display: none;
-  font-size: 1.1em;
+  height: 0%;
+  font-size: 0.9em;
   text-align: center;
   line-height: 30px;
   font-weight: 700;
@@ -113,15 +114,12 @@ i {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 1rem;
   overflow-y: auto;
-  .title,
-  .original-title,
-  .language,
-  .overview,
-  .cast {
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  .row_name {
+    color: red;
+    margin-bottom: 0.3rem;
   }
   button {
     background-color: rgba(255, 0, 0, 0.5);
@@ -136,7 +134,8 @@ i {
 }
 
 .card-info::-webkit-scrollbar {
-  background: white;
+  scroll-behavior: smooth;
+  background: red;
   width: 5px;
   height: 8px;
 }
