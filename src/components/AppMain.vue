@@ -118,7 +118,10 @@ main {
   padding: 1rem;
   h2 {
     margin-left: 33px;
+    margin-bottom: 0.5rem;
     color: white;
+  }
+  select {
   }
 
   .movies,
