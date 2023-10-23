@@ -136,7 +136,7 @@ i {
 .card-info::-webkit-scrollbar {
   scroll-behavior: smooth;
   background: red;
-  width: 5px;
+  width: 2px;
   height: 8px;
 }
 
