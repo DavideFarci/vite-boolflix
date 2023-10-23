@@ -13,7 +13,7 @@ export default {
 <template>
   <header>
     <div class="container_fluid">
-      <a href="http://localhost:5173/"
+      <a href="https://master--boolflix-vue-axios.netlify.app/"
         ><img class="logo" src="../assets/img/logo.png" alt="logo.png"
       /></a>
       <ul class="navbar">
